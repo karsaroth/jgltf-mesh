@@ -92,6 +92,6 @@ public class UIntLineIndices extends ScalarBuffer<Integer> {
 
   @Override
   protected void setBufferViewByteStride(BufferView _bufferView) {
-    _bufferView.setByteStride(Byte.BYTES);
+    _bufferView.setByteStride(Integer.BYTES);
   }
 }
