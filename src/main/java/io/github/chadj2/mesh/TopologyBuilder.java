@@ -20,7 +20,7 @@ import de.javagl.jgltf.impl.v2.Mesh;
 import de.javagl.jgltf.impl.v2.MeshPrimitive;
 import de.javagl.jgltf.impl.v2.Node;
 import io.github.chadj2.mesh.buffer.BufferVecFloat3;
-import io.github.chadj2.mesh.buffer.TriangleIndices;
+import io.github.chadj2.mesh.buffer.ShortTriangleIndices;
 import io.github.chadj2.mesh.buffer.VertexColors;
 
 /**
@@ -47,7 +47,7 @@ public class TopologyBuilder extends BaseBuilder {
     }
     
     /** List of vertices being added to this mesh */
-    protected final List<MeshVertex> _vertexList = new ArrayList<MeshVertex>();
+    protected final List<MeshVertex> _vertexList = new ArrayList<>();
     
     /** Topology mode for MeshPrimitive. This indicates the type of data that will be output by the builder
      * and it can't be altered at runtime. */
@@ -71,7 +71,7 @@ public class TopologyBuilder extends BaseBuilder {
     /**
      * Returns true if no triangles have been added.
      */
-    public boolean isEmpty() { return this._vertexList.size() == 0; }
+    public boolean isEmpty() { return this._vertexList.isEmpty(); }
 
     /**
      * Clear out any added geometry.
@@ -88,7 +88,6 @@ public class TopologyBuilder extends BaseBuilder {
      * Get the maximum bounds of all vertices. Should only be called after build().
      */
     public Tuple3f getMaxBounds() { return this._maxBounds; }
-
 
     /**
      * Create a new vertex and apply the current offset and scale. This vertex will be assigned
@@ -111,12 +110,7 @@ public class TopologyBuilder extends BaseBuilder {
         }
         
         MeshVertex _meshVertex = new MeshVertex(this._vertexList.size(), _newVertex);
-        
-        if(this._vertexList.size() >= TriangleIndices.MAX_INDEX) {
-            String msg = String.format("Trangle idex cannot exceed %d", TriangleIndices.MAX_INDEX);
-            throw new Exception(msg);
-        }
-        
+
         this._vertexList.add(_meshVertex);
         return _meshVertex;
     }

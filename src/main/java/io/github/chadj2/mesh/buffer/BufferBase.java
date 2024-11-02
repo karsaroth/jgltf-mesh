@@ -46,6 +46,13 @@ public abstract class BufferBase<T> {
     public void clear() { this._list.clear(); }
 
     protected abstract void writeBuf(ByteBuffer _buffer);
+
+    protected void setBufferViewTarget(BufferView _bufferView) {
+    }
+
+    protected void setBufferViewByteStride(BufferView _bufferView) {
+
+    }
     
     public final Accessor buildAttrib(MeshGltfWriter _geoWriter, MeshPrimitive _meshPirimitive, String _attribute) {
         Accessor _accessor = buildBuffer(_geoWriter);
@@ -115,6 +122,9 @@ public abstract class BufferBase<T> {
         LOG.debug("BufferView[{}]: start={}, size={}", _bufViewName, _startPos, _length);
 
         BufferBase.alignWords(_buffer);
+
+        setBufferViewTarget(_bufferView);
+        setBufferViewByteStride(_bufferView);
         return _bufferView;
     }
 

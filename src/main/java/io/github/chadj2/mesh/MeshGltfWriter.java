@@ -51,6 +51,8 @@ import de.javagl.jgltf.model.v2.GltfModelCreatorV2;
 /**
  * Serialize added nodes to glTF format.
  * @author Chad Juliano
+ *
+ * Adjusted to allow for larger buffer sizes.
  */
 public class MeshGltfWriter {
     
@@ -81,11 +83,11 @@ public class MeshGltfWriter {
 
     private final static Logger LOG = LoggerFactory.getLogger(MeshGltfWriter.class);
 
-    /** Largest size of byte buffer we will support. */
+    /** Largest size of byte buffer by default. */
     private static final int MAX_BUFFER_SIZE = 50*1024*1024;
 
     /** Buffer used for primitive serialization. */
-    private final ByteBuffer _byteBuffer = Buffers.create(MAX_BUFFER_SIZE);
+    private final ByteBuffer _byteBuffer;
 
     private final GlTF _gltf = new GlTF();
     
@@ -108,6 +110,11 @@ public class MeshGltfWriter {
     private final List<Node> _nodes = new ArrayList<>();
     
     public MeshGltfWriter() {
+        this(MAX_BUFFER_SIZE);
+    }
+
+    public MeshGltfWriter(int _maxBufferSize) {
+        this._byteBuffer = Buffers.create(_maxBufferSize);
         this._gltf.addScenes(this._topScene);
     }
     

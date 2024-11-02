@@ -39,10 +39,10 @@ public class MeshVertex {
     private Color _color = null;
     
     /** list of normals that will be averaged during build() */
-    private List<Vector3f> _normals = new ArrayList<Vector3f>();
+    private final List<Vector3f> _normals = new ArrayList<Vector3f>();
     
     /** list of tangents that will be averaged during build() */
-    private List<Vector3f> _tangents = new ArrayList<Vector3f>();
+    private final List<Vector3f> _tangents = new ArrayList<Vector3f>();
     
     protected MeshVertex(int _index, Point3f _vertex) {
         this._idx = _index;
@@ -130,7 +130,7 @@ public class MeshVertex {
      * Calculate the average of the normal vectors.
      */
     protected Vector3f getNormal() throws Exception {
-        if(this._normals.size() == 0) {
+        if(this._normals.isEmpty()) {
             LOG.warn("Vertex has no normals: {}", this.getIndex());
             return newFakeNormal();
         }
@@ -162,7 +162,7 @@ public class MeshVertex {
      * Calculate the average of the tangent vectors. 
      */
     protected Vector4f getTangent() throws Exception {
-        if(this._normals.size() == 0) {
+        if(this._normals.isEmpty()) {
             throw new Exception("No tangents to average for vertex: " + this._idx);
         }
         
@@ -174,11 +174,10 @@ public class MeshVertex {
         }
         
         _avgTangent.normalize();
-        Vector4f _tangent = new Vector4f(
-                _avgTangent.x, 
-                _avgTangent.y, 
-                _avgTangent.z, 
-                1f);
-        return _tangent;
+      return new Vector4f(
+              _avgTangent.x,
+              _avgTangent.y,
+              _avgTangent.z,
+              1f);
     }
 }
