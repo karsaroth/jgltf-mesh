@@ -1,11 +1,6 @@
 package io.github.chadj2.mesh.buffer;
 
-import de.javagl.jgltf.impl.v2.Accessor;
-import de.javagl.jgltf.impl.v2.BufferView;
-import de.javagl.jgltf.impl.v2.GlTF;
-import de.javagl.jgltf.impl.v2.MeshPrimitive;
 import de.javagl.jgltf.model.GltfConstants;
-import io.github.chadj2.mesh.MeshGltfWriter;
 
 import java.nio.ByteBuffer;
 

@@ -9,8 +9,6 @@ package io.github.chadj2.mesh.buffer;
 import java.nio.ByteBuffer;
 import java.util.Collections;
 
-import de.javagl.jgltf.impl.v2.BufferView;
-import de.javagl.jgltf.impl.v2.GlTF;
 import de.javagl.jgltf.model.GltfConstants;
 
 /**

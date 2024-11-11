@@ -20,7 +20,6 @@ import de.javagl.jgltf.impl.v2.Mesh;
 import de.javagl.jgltf.impl.v2.MeshPrimitive;
 import de.javagl.jgltf.impl.v2.Node;
 import io.github.chadj2.mesh.buffer.BufferVecFloat3;
-import io.github.chadj2.mesh.buffer.ShortTriangleIndices;
 import io.github.chadj2.mesh.buffer.VertexColors;
 
 /**
